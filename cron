@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Check for the 'cron' package and install it if it is not yet installed.
+if [ $(dpkg-query -W -f='${Status}' cron 2>/dev/null | grep -c "ok installed") -eq 0 ];
+then
+  apt-get -qy install cron;
+fi
+
+# Launch the cron daemon
+/usr/sbin/cron
